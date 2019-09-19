@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <!-- 配置容器组件的扫描包
+        用来指定DispatcherServlet将哪个包中的类进行扫描
+        扫描这些类的注解，根据其注解将这些类实例化，作为容器中的组件
+        base-package属性即设置要扫描的包
+        容器中包括Controller，Service，Handler
+     -->
+    <context:annotation-config />
+    <context:component-scan base-package="com.frazier"/>
+
+    <!-- 配置SpringMVC的注解驱动
+    	让SpringMVC去加载默认的各种Handler，Adapter
+     -->
+    <mvc:annotation-driven />
+    <!-- 静态资源处理， css， js， imgs -->
+    <mvc:resources mapping="/resources" location="/resources/**"/>
+    <mvc:default-servlet-handler />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <!-- SpringMVC文件上传规定需配置 MultipartResolver处理器 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- 指定所上传文件的总大小,单位字节。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+        <property name="maxUploadSize" value="10485760" />
+    </bean>
+
+    <!-- 配置根视图：欢迎视图，首页 -->
+<!--    <mvc:view-controller path="/" view-name="index"/>-->
+
+    <!-- 配置拦截器列表 -->
+    <!--<mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="LoginInterceptor"
+                  class="edu.nobel.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+    <!-- <mvc:exclude-mapping path="/swagger*/**"/>
+    <mvc:exclude-mapping path="/v2/**"/>
+    <mvc:exclude-mapping path="/webjars/**"/> -->
+
+    <!-- 配置自定义异常处理 -->
+    <!--<bean id="ExceptionHandler" class="edu.nobel.exception.ExceptionHandler" />-->
+
+</beans>
