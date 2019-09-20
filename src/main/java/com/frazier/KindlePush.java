@@ -2,7 +2,6 @@ package com.frazier;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.frazier.mail.EmailUtils;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

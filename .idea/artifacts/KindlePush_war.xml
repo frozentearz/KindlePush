@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="KindlePush:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>KindlePush</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="KindlePush.war">
+      <element id="artifact" artifact-name="KindlePush:war exploded" />
+    </root>
+  </artifact>
+</component>

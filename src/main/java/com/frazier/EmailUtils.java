@@ -1,4 +1,4 @@
-package com.frazier.mail;
+package com.frazier;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
